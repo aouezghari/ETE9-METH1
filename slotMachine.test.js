@@ -13,3 +13,6 @@ test("retourne zéro si les symboles sont différents", () => {
 test("double la mise si les deux derniers symboles sont identiques", () => {
   assert.equal(slotMachine(5, ["%", "+", "+"]), 10);
 });
+test("multiplie la mise par cinq si les trois symboles sont identiques", () => {
+  assert.equal(slotMachine(10, ["+", "+", "+"]), 50);
+});
