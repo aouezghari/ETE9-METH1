@@ -1,39 +1,19 @@
 export function parseCommands(stream) {
+    const translations = {
+      "0X123": "moveForward",
+      "OX789": "moveBackward",
+      "OXABC": "stop"
+    };
+  
     const commands = [];
-    let i = 0;
+    const pattern = /(0X123|OX789|OXABC)(?:\*(\d+))?/g;
   
-    while (i < stream.length) {
-      const code = stream.slice(i, i + 5);
-      i += 5;
+    for (const match of stream.matchAll(pattern)) {
+      const code = translations[match[1]];
+      const count = Number(match[2] ?? 1);
   
-      let count = 1;
-  
-      if (stream[i] === "*") {
-        i++;
-        let digits = "";
-  
-        while (i < stream.length && /[0-9]/.test(stream[i])) {
-          digits += stream[i];
-          i++;
-        }
-  
-        count = Number(digits);
-      }
-  
-      let command;
-  
-      if (code === "0X123") {
-        command = "moveForward";
-      } else if (code === "OX789") {
-        command = "moveBackward";
-      } else if (code === "OXABC") {
-        command = "stop";
-      }
-  
-      if (command !== undefined) {
-        for (let repetition = 0; repetition < count; repetition++) {
-          commands.push(command);
-        }
+      for (let i = 0; i < count; i++) {
+        commands.push({ code });
       }
     }
   
