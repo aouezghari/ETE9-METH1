@@ -12,3 +12,9 @@ test("convertit OX789 en moveBackward", () => {
 test("convertit OXABC en stop", () => {
     assert.deepEqual(parseCommands("OXABC"), ["stop"]);
 });
+test("convertit un flux contenant plusieurs commandes", () => {
+    assert.deepEqual(
+      parseCommands("0X123OX789OXABC"),
+      ["moveForward", "moveBackward", "stop"]
+    );
+});
