@@ -16,3 +16,6 @@ test("double la mise si les deux derniers symboles sont identiques", () => {
 test("multiplie la mise par cinq si les trois symboles sont identiques", () => {
   assert.equal(slotMachine(10, ["+", "+", "+"]), 50);
 });
+test("multiplie la mise par vingt pour le jackpot", () => {
+    assert.equal(slotMachine(50, ["$", "$", "$"]), 1000);
+  });
