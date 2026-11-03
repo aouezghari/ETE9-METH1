@@ -1,5 +1,5 @@
 export function slotMachine(bet, result) {
-    if (result[0] === result[1]) {
+    if (result[0] === result[1] || result[1] === result[2]) {
       return bet * 2;
     }
     return 0;
