@@ -3,5 +3,9 @@ export function parseCommands(stream) {
       return ["moveBackward"];
     }
   
+    if (stream === "OXABC") {
+      return ["stop"];
+    }
+  
     return ["moveForward"];
   }
