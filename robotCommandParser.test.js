@@ -18,3 +18,9 @@ test("convertit un flux contenant plusieurs commandes", () => {
       ["moveForward", "moveBackward", "stop"]
     );
 });
+test("développe une commande répétée dans le flux", () => {
+    assert.deepEqual(
+      parseCommands("0X123*3OXABC"),
+      ["moveForward", "moveForward", "moveForward", "stop"]
+    );
+  });

@@ -1,15 +1,39 @@
 export function parseCommands(stream) {
     const commands = [];
+    let i = 0;
   
-    for (let i = 0; i < stream.length; i += 5) {
+    while (i < stream.length) {
       const code = stream.slice(i, i + 5);
+      i += 5;
+  
+      let count = 1;
+  
+      if (stream[i] === "*") {
+        i++;
+        let digits = "";
+  
+        while (i < stream.length && /[0-9]/.test(stream[i])) {
+          digits += stream[i];
+          i++;
+        }
+  
+        count = Number(digits);
+      }
+  
+      let command;
   
       if (code === "0X123") {
-        commands.push("moveForward");
+        command = "moveForward";
       } else if (code === "OX789") {
-        commands.push("moveBackward");
+        command = "moveBackward";
       } else if (code === "OXABC") {
-        commands.push("stop");
+        command = "stop";
+      }
+  
+      if (command !== undefined) {
+        for (let repetition = 0; repetition < count; repetition++) {
+          commands.push(command);
+        }
       }
     }
   
