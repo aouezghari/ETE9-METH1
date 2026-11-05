@@ -1,6 +1,6 @@
-import logger
+import social_media
 
 
 if __name__ == "__main__":
-    logger.info("Message à caractère informatif")
-    logger.info("un autre message")
+    post = social_media.getPost(100)
+    print(post)
