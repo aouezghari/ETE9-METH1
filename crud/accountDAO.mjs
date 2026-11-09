@@ -8,9 +8,9 @@ export const accountDAO = {
           throw new Error("Compte introuvable");
         }
     
-        return { ...account };
+        return new Account;
     },
-    
+
   insertAccount(account) {
     ACCOUNT_LIST.push(account);
     console.log("Contenu de la BDD :", ACCOUNT_LIST);
