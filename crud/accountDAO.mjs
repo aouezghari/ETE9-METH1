@@ -1,6 +1,16 @@
 import { ACCOUNT_LIST } from "./database.mjs";
 
 export const accountDAO = {
+    retrieveAccountForUpdate(id) {
+        const account = ACCOUNT_LIST.find((account) => account.id === id);
+    
+        if (!account) {
+          throw new Error("Compte introuvable");
+        }
+    
+        return { ...account };
+    },
+    
   insertAccount(account) {
     ACCOUNT_LIST.push(account);
     console.log("Contenu de la BDD :", ACCOUNT_LIST);

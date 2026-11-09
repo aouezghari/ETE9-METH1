@@ -1,3 +1,4 @@
+import { dir } from "node:console";
 import { Account } from "./account.mjs";
 import { accountDAO } from "./accountDAO.mjs";
 
@@ -11,18 +12,14 @@ export const accountService = {
   getAccountList() {
     return accountDAO.retrieveAccountList();
   },
-
   saveAccount(id, lastName, firstName) {
-    const account = accountDAO.retrieveAccount(id);
-
+    const account = accountDAO.retrieveAccountForUpdate(id);
+    
     account.lastName = lastName;
     account.firstName = firstName;
-    delete account.name;
-
+  
     accountDAO.updateAccount(account);
-  },
-
-  getAccount(id) {
+  },  getAccount(id) {
     return accountDAO.retrieveAccount(id);
   },
 };
