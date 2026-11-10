@@ -1,5 +1,6 @@
 import { Account } from "./account.mjs";
 import { ACCOUNT_LIST } from "./database.mjs";
+import { accountSummaryList } from "./queryDatabase.mjs";
 
 export const accountCommandDAO = {
   insertAccount(account) {
@@ -31,5 +32,22 @@ export const accountCommandDAO = {
 
     ACCOUNT_LIST[index] = account;
     console.log("Contenu de la BDD :", ACCOUNT_LIST);
+  },
+  insertAccountSummary(account) {
+    const { creationDate, ...summary } = account;
+    accountSummaryList.push(summary);
+  },
+  
+  updateAccountSummary(account) {
+    const index = accountSummaryList.findIndex(
+      (item) => item.id === account.id
+    );
+  
+    if (index === -1) {
+      throw new Error("Résumé du compte introuvable");
+    }
+  
+    const { creationDate, ...summary } = account;
+    accountSummaryList[index] = summary;
   },
 };
