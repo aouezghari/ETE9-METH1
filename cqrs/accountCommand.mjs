@@ -6,6 +6,7 @@ export const accountCommand = {
     const account = new Account(undefined, lastName, firstName);
     accountCommandDAO.insertAccount(account);
     accountCommandDAO.insertAccountSummary(account);
+    accountCommandDAO.updateAccountCache(account);
     return account;
   },
 
@@ -17,5 +18,6 @@ export const accountCommand = {
 
     accountCommandDAO.updateAccount(account);
     accountCommandDAO.updateAccountSummary(account);
+    accountCommandDAO.updateAccountCache(account);
   },
 };

@@ -1,8 +1,16 @@
 import { Account } from "./account.mjs";
 import { ACCOUNT_LIST } from "./database.mjs";
 import { accountSummaryList } from "./queryDatabase.mjs";
+import { accountCache } from "./cache.mjs";
 
 export const accountCommandDAO = {
+    updateAccountCache(account) {
+        accountCache[account.id] = {
+          id: account.id,
+          name: `${account.lastName} ${account.firstName}`,
+          creationDate: account.creationDate,
+        };
+      },
   insertAccount(account) {
     ACCOUNT_LIST.push(account);
     console.log("Contenu de la BDD :", ACCOUNT_LIST);
